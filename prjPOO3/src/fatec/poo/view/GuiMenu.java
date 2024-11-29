@@ -25,7 +25,8 @@ public class GuiMenu extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros = new javax.swing.JMenu();
@@ -44,22 +45,33 @@ public class GuiMenu extends javax.swing.JFrame {
         menuCadastros.setText("Cadastros");
 
         itemCliente.setText("Cliente");
-        itemCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        itemCliente.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 itemClienteActionPerformed(evt);
             }
         });
         menuCadastros.add(itemCliente);
 
         itemVendedor.setText("Vendedor");
-        itemVendedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        itemVendedor.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 itemVendedorActionPerformed(evt);
             }
         });
         menuCadastros.add(itemVendedor);
 
         itemPedido.setText("Pedido");
+        itemPedido.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                itemPedidoActionPerformed(evt);
+            }
+        });
         menuCadastros.add(itemPedido);
         menuCadastros.add(jSeparator1);
 
@@ -91,6 +103,12 @@ public class GuiMenu extends javax.swing.JFrame {
     private void itemVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVendedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemVendedorActionPerformed
+
+    private void itemPedidoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_itemPedidoActionPerformed
+    {//GEN-HEADEREND:event_itemPedidoActionPerformed
+        GuiPedido pedido = new GuiPedido();
+        pedido.setVisible(true);
+    }//GEN-LAST:event_itemPedidoActionPerformed
 
     /**
      * @param args the command line arguments

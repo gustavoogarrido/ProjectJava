@@ -5,6 +5,10 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.control.DaoPedido;
+import fatec.poo.control.PreparaConexao;
+import fatec.poo.model.Pedido;
+
 /**
  *
  * @author 0030482311012
@@ -25,7 +29,8 @@ public class GuiPedido extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         labelNumeroPedido = new javax.swing.JLabel();
         textNumeroPedido = new javax.swing.JTextField();
@@ -52,20 +57,37 @@ public class GuiPedido extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(800, 400));
         setMinimumSize(new java.awt.Dimension(800, 400));
         setPreferredSize(new java.awt.Dimension(800, 400));
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
 
         labelNumeroPedido.setText("Número do Pedido:");
 
         labelDataPedido.setText("Data do Pedido:");
 
+        textDataPedido.setEnabled(false);
+
         labelValorPedido.setText("Valor do Pedido:");
+
+        textValorPedido.setEnabled(false);
 
         labelCPFCliente.setText("CPF Cliente:");
 
         btnConsultarCPFCliente.setText("Consultar");
+        btnConsultarCPFCliente.setEnabled(false);
+
+        textCPFCliente.setEnabled(false);
 
         labelCPFVendedor.setText("CPF Vendedor:");
 
         btnConsultarCPFVendedor.setText("Consultar");
+        btnConsultarCPFVendedor.setEnabled(false);
+
+        textCPFVendedor.setEnabled(false);
 
         btnSair.setText("Sair");
 
@@ -79,6 +101,13 @@ public class GuiPedido extends javax.swing.JFrame {
         btnIncluir.setEnabled(false);
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         labelValorCPFCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labelValorCPFCliente.setEnabled(false);
@@ -128,16 +157,16 @@ public class GuiPedido extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(labelValorPedido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                                 .addComponent(textValorPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(labelNumeroPedido)
-                                        .addGap(18, 18, 18))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(labelDataPedido)
-                                        .addGap(43, 43, 43)))
+                                        .addGap(43, 43, 43))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(labelNumeroPedido)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(textNumeroPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                                     .addComponent(textDataPedido))))
@@ -190,6 +219,19 @@ public class GuiPedido extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConsultarActionPerformed
+    {//GEN-HEADEREND:event_btnConsultarActionPerformed
+        
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        prepCon = new PreparaConexao("system", "senhabd123");
+        prepCon.setDriver("oracle.jdbc.driver.OracleDriver");
+        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521:xe");
+        daoPedido = new DaoPedido(prepCon.abrirConexao());
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +266,10 @@ public class GuiPedido extends javax.swing.JFrame {
             }
         });
     }
+    
+    private Pedido pedido;
+    private PreparaConexao prepCon;
+    private DaoPedido daoPedido;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
