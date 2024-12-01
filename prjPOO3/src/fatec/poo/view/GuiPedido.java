@@ -5,20 +5,27 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.control.DaoCliente;
 import fatec.poo.control.DaoPedido;
+import fatec.poo.control.DaoVendedor;
 import fatec.poo.control.PreparaConexao;
 import fatec.poo.model.Pedido;
+import java.sql.Date;
+import java.sql.SQLException;
+import oracle.jdbc.pool.OracleOCIConnectionPool;
 
 /**
  *
  * @author 0030482311012
  */
-public class GuiPedido extends javax.swing.JFrame {
+public class GuiPedido extends javax.swing.JFrame
+{
 
     /**
      * Creates new form GuiPedido
      */
-    public GuiPedido() {
+    public GuiPedido()
+    {
         initComponents();
     }
 
@@ -59,6 +66,10 @@ public class GuiPedido extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 400));
         addWindowListener(new java.awt.event.WindowAdapter()
         {
+            public void windowClosed(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt)
             {
                 formWindowOpened(evt);
@@ -90,6 +101,13 @@ public class GuiPedido extends javax.swing.JFrame {
         textCPFVendedor.setEnabled(false);
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
@@ -99,6 +117,13 @@ public class GuiPedido extends javax.swing.JFrame {
 
         btnIncluir.setText("Incluir");
         btnIncluir.setEnabled(false);
+        btnIncluir.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener()
@@ -221,52 +246,121 @@ public class GuiPedido extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConsultarActionPerformed
     {//GEN-HEADEREND:event_btnConsultarActionPerformed
-        
+        pedido = daoPedido.consultar(Integer.parseInt(textNumeroPedido.getText()));
+        if ("".equals(textNumeroPedido.getText()))
+        {
+            System.out.println("Numero nulo");
+        } else if (pedido != null)
+        {
+            textDataPedido.setText(pedido.getDataEmissao());
+            textValorPedido.setText(Double.toString(pedido.getValor()));
+
+            textCPFCliente.setText(pedido.getCliente().getCpf());
+            textCPFVendedor.setText(pedido.getVendedor().getCpf());
+
+            labelValorCPFCliente.setText(pedido.getCliente().getNome());
+            labelValorCPFVendedor.setText(pedido.getVendedor().getNome());
+        } else
+        {
+            textDataPedido.setText("");
+            textValorPedido.setText("");
+            textCPFCliente.setText("");
+            textCPFVendedor.setText("");
+            labelValorCPFCliente.setText("");
+            labelValorCPFVendedor.setText("");
+
+            textDataPedido.setEnabled(true);
+            textValorPedido.setEnabled(true);
+            textCPFCliente.setEnabled(true);
+            textCPFVendedor.setEnabled(true);
+
+            btnIncluir.setEnabled(true);
+            btnAlterar.setEnabled(true);
+            btnExcluir.setEnabled(true);
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
     {//GEN-HEADEREND:event_formWindowOpened
-        prepCon = new PreparaConexao("system", "senhabd123");
+        prepCon = new PreparaConexao("kevindb", "kevindb");
         prepCon.setDriver("oracle.jdbc.driver.OracleDriver");
-        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521:xe");
+        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521/XEPDB1");
         daoPedido = new DaoPedido(prepCon.abrirConexao());
     }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        prepCon.fecharConexao();
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSairActionPerformed
+    {//GEN-HEADEREND:event_btnSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnIncluirActionPerformed
+    {//GEN-HEADEREND:event_btnIncluirActionPerformed
+        try
+        {
+            pedido = new Pedido(textNumeroPedido.getText());
+            pedido.setDataEmissao(textDataPedido.getText());
+            pedido.setValor(Double.parseDouble(textValorPedido.getText()));
+            pedido.setCliente(new DaoCliente(prepCon.abrirConexao()).consultar(textCPFCliente.getText()));
+            pedido.setVendedor(new DaoVendedor(prepCon.abrirConexao()).consultar(textCPFVendedor.getText()));
+        }
+        catch(NumberFormatException e)
+        {
+            System.out.println(e);
+        }
+        
+        daoPedido.incluir(pedido);
+    }//GEN-LAST:event_btnIncluirActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new GuiPedido().setVisible(true);
             }
         });
     }
-    
+
     private Pedido pedido;
     private PreparaConexao prepCon;
     private DaoPedido daoPedido;

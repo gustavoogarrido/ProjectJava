@@ -50,4 +50,9 @@ public class Pedido {
     public double getValor() {
         return valor;
     }
+    
+    public String getNumero()
+    {
+        return numero;
+    }
 }

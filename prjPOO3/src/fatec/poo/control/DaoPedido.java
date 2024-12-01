@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import fatec.poo.model.Pedido;
 import fatec.poo.model.Cliente;
 import fatec.poo.model.Vendedor;
+import java.sql.Date;
+import java.text.DateFormat;
 
 public class DaoPedido
 {
@@ -19,22 +21,23 @@ public class DaoPedido
         this.conn = conn;
     }
 
-    public Pedido consultar(String numero)
+    public Pedido consultar(int numero)
     {
         Pedido pedido = null;
         try
         {
             PreparedStatement ps = conn.prepareStatement("select * from pooPedido where numero = ?");
-            ps.setString(1, numero);
+            ps.setInt(1, numero);
             ResultSet rs = ps.executeQuery();
             if (rs.next())
             {
                 pedido = new Pedido(rs.getString("numero"));
-                pedido.setDataEmissao(rs.getString("dataEmissao"));
-                
+                pedido.setDataEmissao(rs.getDate("dataEmissao").toString());
+                pedido.setValor(rs.getDouble("numero"));
+
                 Cliente cliente = new DaoCliente(conn).consultar(rs.getString("cliente"));
                 Vendedor vendedor = new DaoVendedor(conn).consultar(rs.getString("vendedor"));
-                
+
                 pedido.setCliente(cliente);
                 pedido.setVendedor(vendedor);
             }
@@ -43,5 +46,25 @@ public class DaoPedido
             System.out.println(ex.toString());
         }
         return pedido;
+    }
+
+    public String incluir(Pedido pedido)
+    {
+        PreparedStatement ps;
+        try
+        {
+            ps = conn.prepareStatement("insert into pooPedido(numero, dataEmissao, valor, cliente, vendedor) values (?, ?, ?, ?, ?)");
+            ps.setInt(1, Integer.parseInt(pedido.getNumero()));
+            ps.setDate(2, Date.valueOf(pedido.getDataEmissao()));
+            ps.setDouble(3, pedido.getValor());
+            ps.setString(4, pedido.getCliente().getCpf());
+            ps.setString(5, pedido.getVendedor().getCpf());
+            ps.execute();
+        } catch (SQLException ex)
+        {
+            System.out.println("DEU RUIM!");
+        }
+        
+        return "";
     }
 }

@@ -481,9 +481,9 @@ public class GuiVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        prepCon = new PreparaConexao("system", "senhabd123");
+        prepCon = new PreparaConexao("kevindb", "kevindb");
         prepCon.setDriver("oracle.jdbc.driver.OracleDriver");
-        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521:xe");
+        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521/XEPDB1");
         daoVendedor = new DaoVendedor(prepCon.abrirConexao());
         lblCPF.setText("");
     }//GEN-LAST:event_formWindowOpened

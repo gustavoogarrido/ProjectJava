@@ -48,7 +48,7 @@ public class DaoCliente {
     public String inserir(Cliente cliente) {
         PreparedStatement ps;
         try {
-            ps = conn.prepareStatement("insert into pooCliente values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            ps = conn.prepareStatement("insert into pooCliente(cpf, nome, endereco, cidade, cep, uf, ddd, telefone, limitecredito, limitedisponivel) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, cliente.getCpf());
             ps.setString(2, cliente.getNome());
             ps.setString(3, cliente.getEndereco());

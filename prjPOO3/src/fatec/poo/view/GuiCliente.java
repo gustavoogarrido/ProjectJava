@@ -445,9 +445,9 @@ public class GuiCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        prepCon = new PreparaConexao("system", "senhabd123");
+        prepCon = new PreparaConexao("kevindb", "kevindb");
         prepCon.setDriver("oracle.jdbc.driver.OracleDriver");
-        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521:xe");
+        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521/XEPDB1");
         daoCliente = new DaoCliente(prepCon.abrirConexao());
         lblCPF.setText("");
     }//GEN-LAST:event_formWindowOpened
