@@ -5,9 +5,9 @@
         <group>
             <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/control/DaoPedido.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/view/GuiCliente.java</file>
-            <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/control/PreparaConexao.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/control/DaoCliente.java</file>
-            <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/model/Pessoa.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/model/Vendedor.java</file>
+            <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/view/GuiMenu.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/view/GuiVendedor.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/view/GuiPedido.java</file>
             <file>file:/C:/Users/Kevin/Documents/GitHub/ProjectJava/prjPOO3/src/fatec/poo/model/Cliente.java</file>

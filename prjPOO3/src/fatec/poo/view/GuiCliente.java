@@ -356,7 +356,6 @@ public class GuiCliente extends javax.swing.JFrame {
             cliente.setTelefone(textTelefone.getText());
             cliente.setDdd(textDDD.getText());
             cliente.setCep(textCEP.getText());
-            cliente.setLimiteDisponivel(5000);
             lblCPF.setText(daoCliente.inserir(cliente));
             if (!"".equals(lblCPF.getText())) {
                 lblCPF.setForeground(Color.green);

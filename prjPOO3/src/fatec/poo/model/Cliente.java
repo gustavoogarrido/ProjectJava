@@ -30,6 +30,7 @@ public class Cliente extends Pessoa
         if (limiteDisponivel >= pedido.getValor())
         {
             this.pedido.add(pedido);
+            pedido.setCliente(this);
             limiteDisponivel -= pedido.getValor();
             return true;
         } else

@@ -33,7 +33,7 @@ public class DaoPedido
             {
                 pedido = new Pedido(rs.getString("numero"));
                 pedido.setDataEmissao(rs.getDate("dataEmissao").toString());
-                pedido.setValor(rs.getDouble("numero"));
+                pedido.setValor(rs.getDouble("valor"));
 
                 Cliente cliente = new DaoCliente(conn).consultar(rs.getString("cliente"));
                 Vendedor vendedor = new DaoVendedor(conn).consultar(rs.getString("vendedor"));
@@ -41,6 +41,9 @@ public class DaoPedido
                 pedido.setCliente(cliente);
                 pedido.setVendedor(vendedor);
             }
+            rs.close();
+            
+            ps.close();
         } catch (SQLException ex)
         {
             System.out.println(ex.toString());
@@ -60,6 +63,7 @@ public class DaoPedido
             ps.setString(4, pedido.getCliente().getCpf());
             ps.setString(5, pedido.getVendedor().getCpf());
             ps.execute();
+            ps.close();
         } catch (SQLException ex)
         {
             System.out.println("DEU RUIM!");
@@ -78,6 +82,7 @@ public class DaoPedido
             ps.setDouble(2, pedido.getValor());
             ps.setInt(3, Integer.parseInt(pedido.getNumero()));
             ps.execute();
+            ps.close();
         } catch (SQLException ex)
         {
             System.out.println("");
@@ -92,6 +97,7 @@ public class DaoPedido
             ps = conn.prepareStatement("delete pooPedido where numero=?");
             ps.setInt(1, numero);
             ps.execute();
+            ps.close();
         } catch (SQLException ex)
         {
             System.out.println("Não existe");

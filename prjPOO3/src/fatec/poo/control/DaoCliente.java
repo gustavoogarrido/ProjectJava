@@ -6,6 +6,7 @@
 package fatec.poo.control;
 
 import fatec.poo.model.Cliente;
+import fatec.poo.model.Pedido;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,8 +37,21 @@ public class DaoCliente {
                 cliente.setUf(rs.getString("uf"));
                 cliente.setDdd(rs.getString("ddd"));
                 cliente.setTelefone(rs.getString("telefone"));
-                cliente.setLimiteDisponivel(rs.getDouble("limiteDisponivel"));
+                
+                ps = conn.prepareStatement("select * from pooPedido where cliente = ?");
+                ps.setString(1, cpf);
+                rs = ps.executeQuery();
+                while(rs.next())
+                {
+                    Pedido pedido = new Pedido(rs.getString("numero"));
+                    pedido.setValor(rs.getDouble("valor"));
+                    cliente.addPedido(pedido);
+                }
+                rs.close();
+                ps.close();
             }
+            
+            ps.close();
         }
         catch (SQLException ex) { 
              System.out.println(ex.toString());   
@@ -48,7 +62,7 @@ public class DaoCliente {
     public String inserir(Cliente cliente) {
         PreparedStatement ps;
         try {
-            ps = conn.prepareStatement("insert into pooCliente(cpf, nome, endereco, cidade, cep, uf, ddd, telefone, limitecredito, limitedisponivel) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            ps = conn.prepareStatement("insert into pooCliente(cpf, nome, endereco, cidade, cep, uf, ddd, telefone, limitecredito) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, cliente.getCpf());
             ps.setString(2, cliente.getNome());
             ps.setString(3, cliente.getEndereco());
@@ -58,7 +72,6 @@ public class DaoCliente {
             ps.setString(7, cliente.getDdd());
             ps.setString(8, cliente.getTelefone());
             ps.setDouble(9, cliente.getLimiteCredito());
-            ps.setDouble(10, cliente.getLimiteDisponivel());
             ps.execute();
             return "Cliente incluido com sucesso!";
         } catch (SQLException ex) {
@@ -70,7 +83,7 @@ public class DaoCliente {
     public String alterar(Cliente cliente) {
         PreparedStatement ps;
         try {
-            ps = conn.prepareStatement("update pooCliente set cpf = ?, nome = ?, endereco = ?, cidade = ?, cep = ?, uf = ?, ddd = ?, telefone = ?, limiteCredito = ?, limiteDisponivel = ? where cpf = ?");
+            ps = conn.prepareStatement("update pooCliente set cpf = ?, nome = ?, endereco = ?, cidade = ?, cep = ?, uf = ?, ddd = ?, telefone = ?, limiteCredito = ? where cpf = ?");
             ps.setString(1, cliente.getCpf());
             ps.setString(2, cliente.getNome());
             ps.setString(3, cliente.getEndereco());
@@ -80,7 +93,6 @@ public class DaoCliente {
             ps.setString(7, cliente.getDdd());
             ps.setString(8, cliente.getTelefone());
             ps.setDouble(9, cliente.getLimiteCredito());
-            ps.setDouble(10, cliente.getLimiteDisponivel());
             ps.setString(11, cliente.getCpf());
             ps.execute();
             return "Dados alterados com sucesso!";

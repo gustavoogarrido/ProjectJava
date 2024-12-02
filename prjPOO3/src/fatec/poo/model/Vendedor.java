@@ -26,6 +26,7 @@ public class Vendedor extends Pessoa
     public void addPedido(Pedido pedido)
     {
         this.pedido.add(pedido);
+        pedido.setVendedor(this);
     }
     
     public void removePedido(Pedido pedido)
