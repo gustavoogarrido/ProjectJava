@@ -136,17 +136,6 @@ public class GuiVendedor extends javax.swing.JFrame
         labelSalarioBase.setText("Salário Base");
 
         textCPF.setToolTipText("");
-        textCPF.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                textCPFMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt)
-            {
-                textCPFMousePressed(evt);
-            }
-        });
 
         textNome.setToolTipText("");
         textNome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -386,7 +375,7 @@ public class GuiVendedor extends javax.swing.JFrame
             textCidade.setText(null);
             textDDD.setText(null);
             textTelefone.setText(null);
-            comboUF.setSelectedItem(null);
+            comboUF.setSelectedItem(0);
             textCEP.setText(null);
             textSalarioBase.setText(null);
             textTaxaComissao.setText(null);
@@ -425,6 +414,7 @@ public class GuiVendedor extends javax.swing.JFrame
             textCEP.setText(vendedor.getCep());
             textSalarioBase.setText(Double.toString(vendedor.getSalarioBase()));
             textTaxaComissao.setText(Double.toString((vendedor.getTaxaComissao())));
+            textCPF.setEnabled(false);
             textNome.setEnabled(true);
             textEndereco.setEnabled(true);
             textCidade.setEnabled(true);
@@ -434,13 +424,13 @@ public class GuiVendedor extends javax.swing.JFrame
             textCEP.setEnabled(true);
             textSalarioBase.setEnabled(true);
             textTaxaComissao.setEnabled(true);
+            btnConsultar.setEnabled(false);
             btnIncluir.setEnabled(false);
             btnAlterar.setEnabled(true);
             btnConsultar.setEnabled(true);
             btnExcluir.setEnabled(true);
         } else
         {
-            btnIncluir.setEnabled(true);
             lblCPF.setForeground(Color.red);
             lblCPF.setText("CPF Inexistente, tente outro ou inclua um novo!");
             textNome.setEnabled(true);
@@ -457,10 +447,13 @@ public class GuiVendedor extends javax.swing.JFrame
             textCidade.setText(null);
             textDDD.setText(null);
             textTelefone.setText(null);
-            comboUF.setSelectedItem(null);
+            comboUF.setSelectedItem(0);
             textCEP.setText(null);
             textSalarioBase.setText(null);
             textTaxaComissao.setText(null);
+            btnIncluir.setEnabled(true);
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -486,6 +479,8 @@ public class GuiVendedor extends javax.swing.JFrame
             textCEP.setEnabled(false);
             textSalarioBase.setEnabled(false);
             textTaxaComissao.setEnabled(false);
+            textCPF.setEnabled(true);
+            btnConsultar.setEnabled(true);
             btnIncluir.setEnabled(false);
             btnAlterar.setEnabled(false);
             btnExcluir.setEnabled(false);
@@ -545,6 +540,7 @@ public class GuiVendedor extends javax.swing.JFrame
         btnIncluir.setEnabled(false);
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
+        textCPF.setEnabled(true);
         textCPF.setText(null);
         textNome.setText(null);
         textEndereco.setText(null);
@@ -562,22 +558,10 @@ public class GuiVendedor extends javax.swing.JFrame
         popupExcluir.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void textCPFMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textCPFMouseClicked
-    {//GEN-HEADEREND:event_textCPFMouseClicked
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-    }//GEN-LAST:event_textCPFMouseClicked
-
     private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
     {//GEN-HEADEREND:event_formWindowClosed
         prepCon.fecharConexao();
     }//GEN-LAST:event_formWindowClosed
-
-    private void textCPFMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textCPFMousePressed
-    {//GEN-HEADEREND:event_textCPFMousePressed
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-    }//GEN-LAST:event_textCPFMousePressed
 
     /**
      * @param args the command line arguments

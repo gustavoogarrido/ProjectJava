@@ -139,18 +139,6 @@ public class GuiPedido extends javax.swing.JFrame
 
         labelNumeroPedido.setText("Número do Pedido:");
 
-        textNumeroPedido.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                textNumeroPedidoMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt)
-            {
-                textNumeroPedidoMousePressed(evt);
-            }
-        });
-
         labelDataPedido.setText("Data do Pedido:");
 
         textDataPedido.setEnabled(false);
@@ -366,32 +354,32 @@ public class GuiPedido extends javax.swing.JFrame
                 labelValorCPFCliente.setText(pedido.getCliente().getNome());
                 labelValorCPFVendedor.setText(pedido.getVendedor().getNome());
 
-                textDataPedido.setEnabled(false);
-                textValorPedido.setEnabled(false);
-                textCPFCliente.setEnabled(false);
-                textCPFVendedor.setEnabled(false);
-
                 btnConsultarCPFCliente.setEnabled(false);
                 btnConsultarCPFVendedor.setEnabled(false);
 
+                textNumeroPedido.setEnabled(false);
+                textCPFCliente.setEnabled(false);
+                textCPFVendedor.setEnabled(false);
                 textDataPedido.setEnabled(true);
                 textValorPedido.setEnabled(true);
+                btnConsultar.setEnabled(false);
                 btnAlterar.setEnabled(true);
                 btnIncluir.setEnabled(false);
                 btnExcluir.setEnabled(true);
             } else
             {
-                textDataPedido.setEnabled(true);
-                textValorPedido.setEnabled(true);
-                textCPFCliente.setEnabled(true);
-                textCPFVendedor.setEnabled(true);
+                textNumeroPedido.setEnabled(true);
+                textDataPedido.setEnabled(false);
+                textValorPedido.setEnabled(false);
+                textCPFCliente.setEnabled(false);
+                textCPFVendedor.setEnabled(false);
 
-                btnIncluir.setEnabled(true);
+                btnIncluir.setEnabled(false);
                 btnAlterar.setEnabled(false);
                 btnExcluir.setEnabled(false);
 
-                btnConsultarCPFCliente.setEnabled(true);
-                btnConsultarCPFVendedor.setEnabled(true);
+                btnConsultarCPFCliente.setEnabled(false);
+                btnConsultarCPFVendedor.setEnabled(false);
                 labelException.setText("");
             }
         } catch (Exception e)
@@ -465,6 +453,28 @@ public class GuiPedido extends javax.swing.JFrame
             daoPedido.alterar(pedido);
             labelException.setText("Pedido alterado com sucesso!");
             labelException.setForeground(Color.green);
+
+            textNumeroPedido.setText("");
+            textDataPedido.setText("");
+            textValorPedido.setText("");
+            textCPFCliente.setText("");
+            textCPFVendedor.setText("");
+            labelValorCPFCliente.setText("");
+            labelValorCPFVendedor.setText("");
+
+            textNumeroPedido.setEnabled(true);
+            textDataPedido.setEnabled(false);
+            textValorPedido.setEnabled(false);
+            textCPFCliente.setEnabled(false);
+            textCPFVendedor.setEnabled(false);
+
+            btnConsultarCPFCliente.setEnabled(false);
+            btnConsultarCPFVendedor.setEnabled(false);
+
+            btnConsultar.setEnabled(true);
+            btnAlterar.setEnabled(false);
+            btnIncluir.setEnabled(false);
+            btnExcluir.setEnabled(false);
         } catch (Exception e)
         {
             labelException.setText("Erro na alteração! Tente novamente.");
@@ -502,18 +512,6 @@ public class GuiPedido extends javax.swing.JFrame
         }
     }//GEN-LAST:event_btnConsultarCPFVendedorActionPerformed
 
-    private void textNumeroPedidoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textNumeroPedidoMouseClicked
-    {//GEN-HEADEREND:event_textNumeroPedidoMouseClicked
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-    }//GEN-LAST:event_textNumeroPedidoMouseClicked
-
-    private void textNumeroPedidoMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textNumeroPedidoMousePressed
-    {//GEN-HEADEREND:event_textNumeroPedidoMousePressed
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-    }//GEN-LAST:event_textNumeroPedidoMousePressed
-
     private void btnPopupConfirmarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPopupConfirmarActionPerformed
     {//GEN-HEADEREND:event_btnPopupConfirmarActionPerformed
         try
@@ -522,12 +520,34 @@ public class GuiPedido extends javax.swing.JFrame
             daoPedido.excluir(Integer.parseInt(pedido.getNumero()));
             labelException.setText("Pedido excluido com sucesso!");
             labelException.setForeground(Color.green);
+            
+            textNumeroPedido.setText("");
+            textDataPedido.setText("");
+            textValorPedido.setText("");
+            textCPFCliente.setText("");
+            textCPFVendedor.setText("");
+            labelValorCPFCliente.setText("");
+            labelValorCPFVendedor.setText("");
+
+            textNumeroPedido.setEnabled(true);
+            textDataPedido.setEnabled(false);
+            textValorPedido.setEnabled(false);
+            textCPFCliente.setEnabled(false);
+            textCPFVendedor.setEnabled(false);
+
+            btnConsultarCPFCliente.setEnabled(false);
+            btnConsultarCPFVendedor.setEnabled(false);
+
+            btnConsultar.setEnabled(true);
+            btnAlterar.setEnabled(false);
+            btnIncluir.setEnabled(false);
+            btnExcluir.setEnabled(false);
         } catch (Exception e)
         {
             labelException.setText("Erro na exclusão! Tente novamente.");
             labelException.setForeground(Color.red);
         }
-        
+
         popupExcluir.setVisible(false);
     }//GEN-LAST:event_btnPopupConfirmarActionPerformed
 

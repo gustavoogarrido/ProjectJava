@@ -140,17 +140,6 @@ public class GuiCliente extends javax.swing.JFrame
         labelLimiteCredito.setText("Limite de Crédito");
 
         textCPF.setToolTipText("");
-        textCPF.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                textCPFMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt)
-            {
-                textCPFMousePressed(evt);
-            }
-        });
 
         textNome.setToolTipText("");
         textNome.setEnabled(false);
@@ -269,23 +258,22 @@ public class GuiCliente extends javax.swing.JFrame
                     .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(textCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(27, 27, 27))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(textDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelCEP)
-                                    .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelCEP)
+                                .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(textLimiteCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(labelLimiteDisponivel)
-                                .addGap(44, 44, 44)))
+                                .addGap(32, 32, 32)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelUF)
@@ -309,7 +297,7 @@ public class GuiCliente extends javax.swing.JFrame
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,7 +334,7 @@ public class GuiCliente extends javax.swing.JFrame
                     .addComponent(textLimiteCredito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelLimiteDisponivel)
                     .addComponent(labelValorLimiteDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
                     .addComponent(btnIncluir)
@@ -426,6 +414,7 @@ public class GuiCliente extends javax.swing.JFrame
             textCEP.setText(cliente.getCep());
             textLimiteCredito.setText(Double.toString(cliente.getLimiteCredito()));
             labelValorLimiteDisponivel.setText(Double.toString(cliente.getLimiteDisponivel()));
+            textCPF.setEnabled(false);
             textNome.setEnabled(true);
             textEndereco.setEnabled(true);
             textCidade.setEnabled(true);
@@ -436,7 +425,7 @@ public class GuiCliente extends javax.swing.JFrame
             textLimiteCredito.setEnabled(true);
             btnIncluir.setEnabled(false);
             btnAlterar.setEnabled(true);
-            btnConsultar.setEnabled(true);
+            btnConsultar.setEnabled(false);
             btnExcluir.setEnabled(true);
         } else
         {
@@ -500,9 +489,11 @@ public class GuiCliente extends javax.swing.JFrame
             textCEP.setEnabled(false);
             textLimiteCredito.setEnabled(false);
             labelValorLimiteDisponivel.setEnabled(false);
+            btnConsultar.setEnabled(true);
             btnIncluir.setEnabled(false);
             btnAlterar.setEnabled(false);
             btnExcluir.setEnabled(false);
+            textCPF.setEnabled(true);
             textCPF.setText(null);
             textNome.setText(null);
             textEndereco.setText(null);
@@ -535,6 +526,7 @@ public class GuiCliente extends javax.swing.JFrame
             lblCPF.setForeground(Color.red);
             lblCPF.setText("Ocorreu um erro ao excluir");
         }
+        textCPF.setEnabled(true);
         textNome.setEnabled(false);
         textEndereco.setEnabled(false);
         textCidade.setEnabled(false);
@@ -544,6 +536,7 @@ public class GuiCliente extends javax.swing.JFrame
         textCEP.setEnabled(false);
         textLimiteCredito.setEnabled(false);
         labelValorLimiteDisponivel.setEnabled(false);
+        btnConsultar.setEnabled(true);
         btnIncluir.setEnabled(false);
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
@@ -563,18 +556,6 @@ public class GuiCliente extends javax.swing.JFrame
     private void btnPopupCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPopupCancelarActionPerformed
         popupExcluir.setVisible(false);
     }//GEN-LAST:event_btnPopupCancelarActionPerformed
-
-    private void textCPFMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textCPFMouseClicked
-    {//GEN-HEADEREND:event_textCPFMouseClicked
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-    }//GEN-LAST:event_textCPFMouseClicked
-
-    private void textCPFMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textCPFMousePressed
-    {//GEN-HEADEREND:event_textCPFMousePressed
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-    }//GEN-LAST:event_textCPFMousePressed
 
     /**
      * @param args the command line arguments
