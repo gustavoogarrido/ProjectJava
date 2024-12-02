@@ -62,7 +62,7 @@ public class DaoCliente {
     public String inserir(Cliente cliente) {
         PreparedStatement ps;
         try {
-            ps = conn.prepareStatement("insert into pooCliente(cpf, nome, endereco, cidade, cep, uf, ddd, telefone, limitecredito) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            ps = conn.prepareStatement("insert into pooCliente(cpf, nome, endereco, cidade, cep, uf, ddd, telefone, limitecredito) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, cliente.getCpf());
             ps.setString(2, cliente.getNome());
             ps.setString(3, cliente.getEndereco());
@@ -93,7 +93,7 @@ public class DaoCliente {
             ps.setString(7, cliente.getDdd());
             ps.setString(8, cliente.getTelefone());
             ps.setDouble(9, cliente.getLimiteCredito());
-            ps.setString(11, cliente.getCpf());
+            ps.setString(10, cliente.getCpf());
             ps.execute();
             return "Dados alterados com sucesso!";
         } catch (SQLException ex) {

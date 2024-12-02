@@ -9,12 +9,14 @@ package fatec.poo.view;
  *
  * @author 0030482311012
  */
-public class GuiMenu extends javax.swing.JFrame {
+public class GuiMenu extends javax.swing.JFrame
+{
 
     /**
      * Creates new form GuiMenu
      */
-    public GuiMenu() {
+    public GuiMenu()
+    {
         initComponents();
     }
 
@@ -76,6 +78,13 @@ public class GuiMenu extends javax.swing.JFrame {
         menuCadastros.add(jSeparator1);
 
         itemSair.setText("Sair");
+        itemSair.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                itemSairActionPerformed(evt);
+            }
+        });
         menuCadastros.add(itemSair);
 
         jMenuBar1.add(menuCadastros);
@@ -97,56 +106,96 @@ public class GuiMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
-        GuiCliente cliente = new GuiCliente();
+        cliente = new GuiCliente();
         cliente.setVisible(true);
     }//GEN-LAST:event_itemClienteActionPerformed
 
     private void itemVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVendedorActionPerformed
-        GuiVendedor vendedor = new GuiVendedor();
+        vendedor = new GuiVendedor();
         vendedor.setVisible(true);
     }//GEN-LAST:event_itemVendedorActionPerformed
 
     private void itemPedidoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_itemPedidoActionPerformed
     {//GEN-HEADEREND:event_itemPedidoActionPerformed
-        GuiPedido pedido = new GuiPedido();
+        pedido = new GuiPedido();
         pedido.setVisible(true);
     }//GEN-LAST:event_itemPedidoActionPerformed
+
+    private void itemSairActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_itemSairActionPerformed
+    {//GEN-HEADEREND:event_itemSairActionPerformed
+        try
+        {
+            cliente.dispose();
+        } catch (Exception e)
+        {
+
+        }
+        try
+        {
+            vendedor.dispose();
+        } catch (Exception e)
+        {
+
+        }
+        try
+        {
+            pedido.dispose();
+        } catch (Exception e)
+        {
+
+        }
+
+        dispose();
+    }//GEN-LAST:event_itemSairActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(GuiMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(GuiMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(GuiMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(GuiMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new GuiMenu().setVisible(true);
             }
         });
     }
 
+    GuiCliente cliente;
+    GuiVendedor vendedor;
+    GuiPedido pedido;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemCliente;
     private javax.swing.JMenuItem itemPedido;

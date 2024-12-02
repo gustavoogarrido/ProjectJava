@@ -14,12 +14,14 @@ import java.awt.Color;
  *
  * @author 0030482311012
  */
-public class GuiVendedor extends javax.swing.JFrame {
+public class GuiVendedor extends javax.swing.JFrame
+{
 
     /**
      * Creates new form GuiCliente
      */
-    public GuiVendedor() {
+    public GuiVendedor()
+    {
         initComponents();
     }
 
@@ -120,6 +122,10 @@ public class GuiVendedor extends javax.swing.JFrame {
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter()
         {
+            public void windowClosed(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt)
             {
                 formWindowOpened(evt);
@@ -130,6 +136,17 @@ public class GuiVendedor extends javax.swing.JFrame {
         labelSalarioBase.setText("Salário Base");
 
         textCPF.setToolTipText("");
+        textCPF.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                textCPFMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
+                textCPFMousePressed(evt);
+            }
+        });
 
         textNome.setToolTipText("");
         textNome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -342,7 +359,8 @@ public class GuiVendedor extends javax.swing.JFrame {
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
         lblCPF.setText("");
-        try {
+        try
+        {
             vendedor = new Vendedor(textCPF.getText(), textNome.getText(), Double.parseDouble(textSalarioBase.getText()));
             vendedor.setEndereco(textEndereco.getText());
             vendedor.setCidade(textCidade.getText());
@@ -352,12 +370,15 @@ public class GuiVendedor extends javax.swing.JFrame {
             vendedor.setCep(textCEP.getText());
             vendedor.setTaxaComissao(Double.parseDouble(textTaxaComissao.getText()));
             lblCPF.setText(daoVendedor.inserir(vendedor));
-            if (!"".equals(lblCPF.getText())) {
+            if (!"".equals(lblCPF.getText()))
+            {
                 lblCPF.setForeground(Color.green);
                 btnIncluir.setEnabled(false);
-            } else {
+            } else
+            {
                 lblCPF.setForeground(Color.red);
                 lblCPF.setText("Ocorreu um erro, tente inserir os dados novamente");
+                return;
             }
             textCPF.setText(null);
             textNome.setText(null);
@@ -379,7 +400,8 @@ public class GuiVendedor extends javax.swing.JFrame {
             textSalarioBase.setEnabled(false);
             textTaxaComissao.setEnabled(false);
 
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e)
+        {
             lblCPF.setForeground(Color.red);
             lblCPF.setText("Digite dados válidos");
         }
@@ -387,10 +409,12 @@ public class GuiVendedor extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         vendedor = daoVendedor.consultar(textCPF.getText());
-        if ("".equals(textCPF.getText())) {
+        if ("".equals(textCPF.getText()))
+        {
             lblCPF.setText("Insira um CPF");
             lblCPF.setForeground(Color.red);
-        } else if (vendedor != null) {
+        } else if (vendedor != null)
+        {
             lblCPF.setText("");
             textNome.setText(vendedor.getNome());
             textEndereco.setText(vendedor.getEndereco());
@@ -414,7 +438,8 @@ public class GuiVendedor extends javax.swing.JFrame {
             btnAlterar.setEnabled(true);
             btnConsultar.setEnabled(true);
             btnExcluir.setEnabled(true);
-        } else {
+        } else
+        {
             btnIncluir.setEnabled(true);
             lblCPF.setForeground(Color.red);
             lblCPF.setText("CPF Inexistente, tente outro ou inclua um novo!");
@@ -449,7 +474,8 @@ public class GuiVendedor extends javax.swing.JFrame {
         vendedor.setCep(textCEP.getText());
         vendedor.setTaxaComissao(Double.parseDouble(textTaxaComissao.getText()));
         lblCPF.setText(daoVendedor.alterar(vendedor));
-        if (!"".equals(lblCPF.getText())) {
+        if (!"".equals(lblCPF.getText()))
+        {
             lblCPF.setForeground(Color.green);
             textNome.setEnabled(false);
             textEndereco.setEnabled(false);
@@ -473,7 +499,8 @@ public class GuiVendedor extends javax.swing.JFrame {
             textCEP.setText(null);
             textSalarioBase.setText(null);
             textTaxaComissao.setText(null);
-        } else {
+        } else
+        {
             lblCPF.setText("Ocorreu um erro ao alterar os dados, tente novamente");
             lblCPF.setForeground(Color.red);
 
@@ -498,9 +525,11 @@ public class GuiVendedor extends javax.swing.JFrame {
 
     private void btnPopupConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPopupConfActionPerformed
         lblCPF.setText(daoVendedor.excluir(vendedor.getCpf()));
-        if (!"".equals(lblCPF.getText())) {
+        if (!"".equals(lblCPF.getText()))
+        {
             lblCPF.setForeground(Color.green);
-        } else {
+        } else
+        {
             lblCPF.setForeground(Color.red);
             lblCPF.setText("Ocorreu um erro ao excluir");
         }
@@ -533,37 +562,64 @@ public class GuiVendedor extends javax.swing.JFrame {
         popupExcluir.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void textCPFMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textCPFMouseClicked
+    {//GEN-HEADEREND:event_textCPFMouseClicked
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+    }//GEN-LAST:event_textCPFMouseClicked
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        prepCon.fecharConexao();
+    }//GEN-LAST:event_formWindowClosed
+
+    private void textCPFMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textCPFMousePressed
+    {//GEN-HEADEREND:event_textCPFMousePressed
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+    }//GEN-LAST:event_textCPFMousePressed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(GuiVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(GuiVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(GuiVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(GuiVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new GuiVendedor().setVisible(true);
             }
         });

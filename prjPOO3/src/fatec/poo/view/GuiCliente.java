@@ -15,12 +15,14 @@ import java.io.IOException;
  *
  * @author 0030482311012
  */
-public class GuiCliente extends javax.swing.JFrame {
+public class GuiCliente extends javax.swing.JFrame
+{
 
     /**
      * Creates new form GuiCliente
      */
-    public GuiCliente() {
+    public GuiCliente()
+    {
         initComponents();
     }
 
@@ -35,7 +37,7 @@ public class GuiCliente extends javax.swing.JFrame {
     {
 
         popupExcluir = new javax.swing.JDialog();
-        btnPopupConfirmm = new javax.swing.JButton();
+        btnPopupConfirmar = new javax.swing.JButton();
         btnPopupCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         labelLimiteCredito = new javax.swing.JLabel();
@@ -67,12 +69,12 @@ public class GuiCliente extends javax.swing.JFrame {
         popupExcluir.setSize(new java.awt.Dimension(400, 240));
         popupExcluir.setType(java.awt.Window.Type.POPUP);
 
-        btnPopupConfirmm.setText("Confirmar");
-        btnPopupConfirmm.addActionListener(new java.awt.event.ActionListener()
+        btnPopupConfirmar.setText("Confirmar");
+        btnPopupConfirmar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnPopupConfirmmActionPerformed(evt);
+                btnPopupConfirmarActionPerformed(evt);
             }
         });
 
@@ -99,7 +101,7 @@ public class GuiCliente extends javax.swing.JFrame {
                 .addGap(141, 141, 141)
                 .addGroup(popupExcluirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(popupExcluirLayout.createSequentialGroup()
-                        .addComponent(btnPopupConfirmm)
+                        .addComponent(btnPopupConfirmar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPopupCancelar))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -112,7 +114,7 @@ public class GuiCliente extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addGroup(popupExcluirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPopupConfirmm)
+                    .addComponent(btnPopupConfirmar)
                     .addComponent(btnPopupCancelar))
                 .addGap(58, 58, 58))
         );
@@ -138,6 +140,17 @@ public class GuiCliente extends javax.swing.JFrame {
         labelLimiteCredito.setText("Limite de Crédito");
 
         textCPF.setToolTipText("");
+        textCPF.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                textCPFMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
+                textCPFMousePressed(evt);
+            }
+        });
 
         textNome.setToolTipText("");
         textNome.setEnabled(false);
@@ -348,7 +361,8 @@ public class GuiCliente extends javax.swing.JFrame {
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
         lblCPF.setText("");
-        try {
+        try
+        {
             cliente = new Cliente(textCPF.getText(), textNome.getText(), Double.parseDouble(textLimiteCredito.getText()));
             cliente.setEndereco(textEndereco.getText());
             cliente.setCidade(textCidade.getText());
@@ -357,12 +371,15 @@ public class GuiCliente extends javax.swing.JFrame {
             cliente.setDdd(textDDD.getText());
             cliente.setCep(textCEP.getText());
             lblCPF.setText(daoCliente.inserir(cliente));
-            if (!"".equals(lblCPF.getText())) {
+            if (!"".equals(lblCPF.getText()))
+            {
                 lblCPF.setForeground(Color.green);
                 btnIncluir.setEnabled(false);
-            } else {
+            } else
+            {
                 lblCPF.setForeground(Color.red);
                 lblCPF.setText("Ocorreu um erro, tente inserir os dados novamente");
+                return;
             }
             textCPF.setText(null);
             textNome.setText(null);
@@ -384,7 +401,8 @@ public class GuiCliente extends javax.swing.JFrame {
             textLimiteCredito.setEnabled(false);
             labelValorLimiteDisponivel.setEnabled(false);
 
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e)
+        {
             lblCPF.setForeground(Color.red);
             lblCPF.setText("Digite dados válidos");
         }
@@ -392,11 +410,12 @@ public class GuiCliente extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         cliente = daoCliente.consultar(textCPF.getText());
-        if ("".equals(textCPF.getText())){
+        if ("".equals(textCPF.getText()))
+        {
             lblCPF.setText("Insira um CPF");
             lblCPF.setForeground(Color.red);
-        }
-        else if (cliente != null) {
+        } else if (cliente != null)
+        {
             lblCPF.setText("");
             textNome.setText(cliente.getNome());
             textEndereco.setText(cliente.getEndereco());
@@ -419,7 +438,8 @@ public class GuiCliente extends javax.swing.JFrame {
             btnAlterar.setEnabled(true);
             btnConsultar.setEnabled(true);
             btnExcluir.setEnabled(true);
-        } else {
+        } else
+        {
             btnIncluir.setEnabled(true);
             lblCPF.setForeground(Color.red);
             lblCPF.setText("CPF Inexistente, tente outro ou inclua um novo!");
@@ -436,7 +456,7 @@ public class GuiCliente extends javax.swing.JFrame {
             textCidade.setText(null);
             textDDD.setText(null);
             textTelefone.setText(null);
-            comboUF.setSelectedItem(null);
+            comboUF.setSelectedItem(0);
             textCEP.setText(null);
             textLimiteCredito.setText(null);
             labelValorLimiteDisponivel.setText(null);
@@ -468,7 +488,8 @@ public class GuiCliente extends javax.swing.JFrame {
         cliente.setDdd(textDDD.getText());
         cliente.setCep(textCEP.getText());
         lblCPF.setText(daoCliente.alterar(cliente));
-        if (!"".equals(lblCPF.getText())) {
+        if (!"".equals(lblCPF.getText()))
+        {
             lblCPF.setForeground(Color.green);
             textNome.setEnabled(false);
             textEndereco.setEnabled(false);
@@ -492,10 +513,10 @@ public class GuiCliente extends javax.swing.JFrame {
             textCEP.setText(null);
             textLimiteCredito.setText(null);
             labelValorLimiteDisponivel.setText(null);
-        } else {
+        } else
+        {
             lblCPF.setText("Ocorreu um erro ao alterar os dados, tente novamente");
             lblCPF.setForeground(Color.red);
-
         }
 
     }//GEN-LAST:event_btnAlterarActionPerformed
@@ -504,11 +525,13 @@ public class GuiCliente extends javax.swing.JFrame {
         popupExcluir.setVisible(true);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnPopupConfirmmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPopupConfirmmActionPerformed
+    private void btnPopupConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPopupConfirmarActionPerformed
         lblCPF.setText(daoCliente.excluir(cliente.getCpf()));
-        if (!"".equals(lblCPF.getText())) {
+        if (!"".equals(lblCPF.getText()))
+        {
             lblCPF.setForeground(Color.green);
-        } else {
+        } else
+        {
             lblCPF.setForeground(Color.red);
             lblCPF.setText("Ocorreu um erro ao excluir");
         }
@@ -535,42 +558,64 @@ public class GuiCliente extends javax.swing.JFrame {
         textLimiteCredito.setText(null);
         labelValorLimiteDisponivel.setText(null);
         popupExcluir.setVisible(false);
-    }//GEN-LAST:event_btnPopupConfirmmActionPerformed
+    }//GEN-LAST:event_btnPopupConfirmarActionPerformed
 
     private void btnPopupCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPopupCancelarActionPerformed
         popupExcluir.setVisible(false);
     }//GEN-LAST:event_btnPopupCancelarActionPerformed
 
+    private void textCPFMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textCPFMouseClicked
+    {//GEN-HEADEREND:event_textCPFMouseClicked
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+    }//GEN-LAST:event_textCPFMouseClicked
+
+    private void textCPFMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textCPFMousePressed
+    {//GEN-HEADEREND:event_textCPFMousePressed
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+    }//GEN-LAST:event_textCPFMousePressed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(GuiCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(GuiCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(GuiCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(GuiCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new GuiCliente().setVisible(true);
             }
         });
@@ -582,7 +627,7 @@ public class GuiCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
     private javax.swing.JButton btnPopupCancelar;
-    private javax.swing.JButton btnPopupConfirmm;
+    private javax.swing.JButton btnPopupConfirmar;
     private javax.swing.JButton btnSair;
     private javax.swing.JComboBox<String> comboUF;
     private javax.swing.JLabel jLabel1;

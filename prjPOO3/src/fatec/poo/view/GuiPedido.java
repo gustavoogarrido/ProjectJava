@@ -42,6 +42,10 @@ public class GuiPedido extends javax.swing.JFrame
     private void initComponents()
     {
 
+        popupExcluir = new javax.swing.JDialog();
+        btnPopupConfirmar = new javax.swing.JButton();
+        btnPopupCancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         labelNumeroPedido = new javax.swing.JLabel();
         textNumeroPedido = new javax.swing.JTextField();
         labelDataPedido = new javax.swing.JLabel();
@@ -63,6 +67,59 @@ public class GuiPedido extends javax.swing.JFrame
         labelValorCPFVendedor = new javax.swing.JLabel();
         labelException = new javax.swing.JLabel();
 
+        popupExcluir.setSize(new java.awt.Dimension(400, 240));
+        popupExcluir.setType(java.awt.Window.Type.POPUP);
+
+        btnPopupConfirmar.setText("Confirmar");
+        btnPopupConfirmar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPopupConfirmarActionPerformed(evt);
+            }
+        });
+
+        btnPopupCancelar.setText("Cancelar");
+        btnPopupCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnPopupCancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel1.setText("Deseja realmente excluir?");
+        jLabel1.setMaximumSize(new java.awt.Dimension(400, 240));
+        jLabel1.setMinimumSize(new java.awt.Dimension(400, 240));
+        jLabel1.setPreferredSize(new java.awt.Dimension(400, 240));
+
+        javax.swing.GroupLayout popupExcluirLayout = new javax.swing.GroupLayout(popupExcluir.getContentPane());
+        popupExcluir.getContentPane().setLayout(popupExcluirLayout);
+        popupExcluirLayout.setHorizontalGroup(
+            popupExcluirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(popupExcluirLayout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addGroup(popupExcluirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(popupExcluirLayout.createSequentialGroup()
+                        .addComponent(btnPopupConfirmar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPopupCancelar))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(160, Short.MAX_VALUE))
+        );
+        popupExcluirLayout.setVerticalGroup(
+            popupExcluirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(popupExcluirLayout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addGroup(popupExcluirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPopupConfirmar)
+                    .addComponent(btnPopupCancelar))
+                .addGap(58, 58, 58))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Emitir Pedido");
         setMaximumSize(new java.awt.Dimension(800, 400));
@@ -81,6 +138,18 @@ public class GuiPedido extends javax.swing.JFrame
         });
 
         labelNumeroPedido.setText("Número do Pedido:");
+
+        textNumeroPedido.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                textNumeroPedidoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
+                textNumeroPedidoMousePressed(evt);
+            }
+        });
 
         labelDataPedido.setText("Data do Pedido:");
 
@@ -178,58 +247,57 @@ public class GuiPedido extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(labelValorPedido)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                        .addComponent(textValorPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labelDataPedido)
-                                                .addGap(43, 43, 43))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(labelNumeroPedido)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(textNumeroPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                            .addComponent(textDataPedido))))
-                                .addGap(59, 59, 59))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelCPFCliente)
-                                    .addComponent(labelCPFVendedor))
-                                .addGap(45, 45, 45)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textCPFVendedor)
-                                    .addComponent(textCPFCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(39, 39, 39)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(labelException, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(btnConsultarCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelValorCPFVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(labelValorPedido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addComponent(textValorPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnConsultarCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelValorCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 20, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelDataPedido)
+                                        .addGap(43, 43, 43))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(labelNumeroPedido)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textNumeroPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                                    .addComponent(textDataPedido))))
+                        .addGap(59, 59, 59))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCPFCliente)
+                            .addComponent(labelCPFVendedor))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textCPFVendedor)
+                            .addComponent(textCPFCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(labelException, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(btnConsultarCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelValorCPFVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnConsultarCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelValorCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 60, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,25 +324,24 @@ public class GuiPedido extends javax.swing.JFrame
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelCPFVendedor)
-                            .addComponent(textCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSair)
-                            .addComponent(btnExcluir)
-                            .addComponent(btnAlterar)
-                            .addComponent(btnIncluir)
-                            .addComponent(btnConsultar))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnConsultarCPFCliente)
                             .addComponent(labelValorCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnConsultarCPFVendedor)
-                            .addComponent(labelValorCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(90, 90, 90))))
+                            .addComponent(labelValorCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSair)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnAlterar)
+                    .addComponent(btnIncluir)
+                    .addComponent(btnConsultar))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -314,13 +381,6 @@ public class GuiPedido extends javax.swing.JFrame
                 btnExcluir.setEnabled(true);
             } else
             {
-                textDataPedido.setText("");
-                textValorPedido.setText("");
-                textCPFCliente.setText("");
-                textCPFVendedor.setText("");
-                labelValorCPFCliente.setText("");
-                labelValorCPFVendedor.setText("");
-
                 textDataPedido.setEnabled(true);
                 textValorPedido.setEnabled(true);
                 textCPFCliente.setEnabled(true);
@@ -414,17 +474,7 @@ public class GuiPedido extends javax.swing.JFrame
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnExcluirActionPerformed
     {//GEN-HEADEREND:event_btnExcluirActionPerformed
-        try
-        {
-            pedido = daoPedido.consultar(Integer.parseInt(textNumeroPedido.getText()));
-            daoPedido.excluir(Integer.parseInt(pedido.getNumero()));
-            labelException.setText("Pedido excluido com sucesso!");
-            labelException.setForeground(Color.green);
-        } catch (Exception e)
-        {
-            labelException.setText("Erro na exclusão! Tente novamente.");
-            labelException.setForeground(Color.red);
-        }
+        popupExcluir.setVisible(true);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnConsultarCPFClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConsultarCPFClienteActionPerformed
@@ -451,6 +501,40 @@ public class GuiPedido extends javax.swing.JFrame
             labelValorCPFVendedor.setText("Não há um vendedor com esse CPF!");
         }
     }//GEN-LAST:event_btnConsultarCPFVendedorActionPerformed
+
+    private void textNumeroPedidoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textNumeroPedidoMouseClicked
+    {//GEN-HEADEREND:event_textNumeroPedidoMouseClicked
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+    }//GEN-LAST:event_textNumeroPedidoMouseClicked
+
+    private void textNumeroPedidoMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_textNumeroPedidoMousePressed
+    {//GEN-HEADEREND:event_textNumeroPedidoMousePressed
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+    }//GEN-LAST:event_textNumeroPedidoMousePressed
+
+    private void btnPopupConfirmarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPopupConfirmarActionPerformed
+    {//GEN-HEADEREND:event_btnPopupConfirmarActionPerformed
+        try
+        {
+            pedido = daoPedido.consultar(Integer.parseInt(textNumeroPedido.getText()));
+            daoPedido.excluir(Integer.parseInt(pedido.getNumero()));
+            labelException.setText("Pedido excluido com sucesso!");
+            labelException.setForeground(Color.green);
+        } catch (Exception e)
+        {
+            labelException.setText("Erro na exclusão! Tente novamente.");
+            labelException.setForeground(Color.red);
+        }
+        
+        popupExcluir.setVisible(false);
+    }//GEN-LAST:event_btnPopupConfirmarActionPerformed
+
+    private void btnPopupCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPopupCancelarActionPerformed
+    {//GEN-HEADEREND:event_btnPopupCancelarActionPerformed
+        popupExcluir.setVisible(false);
+    }//GEN-LAST:event_btnPopupCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -510,7 +594,10 @@ public class GuiPedido extends javax.swing.JFrame
     private javax.swing.JButton btnConsultarCPFVendedor;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
+    private javax.swing.JButton btnPopupCancelar;
+    private javax.swing.JButton btnPopupConfirmar;
     private javax.swing.JButton btnSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelCPFCliente;
     private javax.swing.JLabel labelCPFVendedor;
     private javax.swing.JLabel labelDataPedido;
@@ -519,6 +606,7 @@ public class GuiPedido extends javax.swing.JFrame
     private javax.swing.JLabel labelValorCPFCliente;
     private javax.swing.JLabel labelValorCPFVendedor;
     private javax.swing.JLabel labelValorPedido;
+    private javax.swing.JDialog popupExcluir;
     private javax.swing.JTextField textCPFCliente;
     private javax.swing.JTextField textCPFVendedor;
     private javax.swing.JTextField textDataPedido;

@@ -63,7 +63,6 @@ public class DaoPedido
             ps.setString(4, pedido.getCliente().getCpf());
             ps.setString(5, pedido.getVendedor().getCpf());
             ps.execute();
-            ps.close();
         } catch (SQLException ex)
         {
             System.out.println("DEU RUIM!");
