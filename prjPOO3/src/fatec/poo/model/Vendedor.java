@@ -11,35 +11,46 @@ import java.util.ArrayList;
  *
  * @author gusta
  */
-public class Vendedor extends Pessoa{
+public class Vendedor extends Pessoa
+{
     private double salarioBase, taxaComissao;
     private ArrayList<Pedido> pedido;
-    
-    public Vendedor(String cpf, String nome, double salarioBase){
+
+    public Vendedor(String cpf, String nome, double salarioBase)
+    {
         super(cpf, nome);
         this.salarioBase = salarioBase;
         pedido = new ArrayList<>();
     }
-    
-    public void addPedido(Pedido pedido){
+
+    public void addPedido(Pedido pedido)
+    {
         this.pedido.add(pedido);
     }
+    
+    public void removePedido(Pedido pedido)
+    {
+        this.pedido.remove(pedido);
+    }
 
-    public void setSalarioBase(double salarioBase) {
+    public void setSalarioBase(double salarioBase)
+    {
         this.salarioBase = salarioBase;
     }
 
-    public void setTaxaComissao(double taxaComissao) {
+    public void setTaxaComissao(double taxaComissao)
+    {
         this.taxaComissao = taxaComissao;
     }
 
-    public double getSalarioBase() {
+    public double getSalarioBase()
+    {
         return salarioBase;
     }
 
-    public double getTaxaComissao() {
+    public double getTaxaComissao()
+    {
         return taxaComissao;
     }
-    
-    
+
 }

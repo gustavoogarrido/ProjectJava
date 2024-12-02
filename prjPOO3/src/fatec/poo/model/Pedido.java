@@ -29,10 +29,12 @@ public class Pedido {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+        boolean aceito = cliente.addPedido(this);
     }
 
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
+        vendedor.addPedido(this);
     }
 
     public void setDataEmissao(String dataEmissao) {
