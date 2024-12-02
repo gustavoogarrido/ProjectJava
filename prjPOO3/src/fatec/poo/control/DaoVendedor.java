@@ -48,7 +48,7 @@ public class DaoVendedor {
     public String inserir(Vendedor vendedor) {
         PreparedStatement ps;
         try {
-            ps = conn.prepareStatement("insert into pooVendedor values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            ps = conn.prepareStatement("insert into pooVendedor(cpf, nome, endereco, cidade, cep, uf, ddd, telefone, salariobase, taxacomissao) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, vendedor.getCpf());
             ps.setString(2, vendedor.getNome());
             ps.setString(3, vendedor.getEndereco());

@@ -9,7 +9,9 @@ import fatec.poo.control.DaoCliente;
 import fatec.poo.control.DaoPedido;
 import fatec.poo.control.DaoVendedor;
 import fatec.poo.control.PreparaConexao;
+import fatec.poo.model.Cliente;
 import fatec.poo.model.Pedido;
+import fatec.poo.model.Vendedor;
 import java.sql.Date;
 import java.sql.SQLException;
 import oracle.jdbc.pool.OracleOCIConnectionPool;
@@ -90,6 +92,13 @@ public class GuiPedido extends javax.swing.JFrame
 
         btnConsultarCPFCliente.setText("Consultar");
         btnConsultarCPFCliente.setEnabled(false);
+        btnConsultarCPFCliente.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnConsultarCPFClienteActionPerformed(evt);
+            }
+        });
 
         textCPFCliente.setEnabled(false);
 
@@ -97,6 +106,13 @@ public class GuiPedido extends javax.swing.JFrame
 
         btnConsultarCPFVendedor.setText("Consultar");
         btnConsultarCPFVendedor.setEnabled(false);
+        btnConsultarCPFVendedor.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnConsultarCPFVendedorActionPerformed(evt);
+            }
+        });
 
         textCPFVendedor.setEnabled(false);
 
@@ -111,9 +127,23 @@ public class GuiPedido extends javax.swing.JFrame
 
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnIncluir.setText("Incluir");
         btnIncluir.setEnabled(false);
@@ -260,6 +290,19 @@ public class GuiPedido extends javax.swing.JFrame
 
             labelValorCPFCliente.setText(pedido.getCliente().getNome());
             labelValorCPFVendedor.setText(pedido.getVendedor().getNome());
+
+            textDataPedido.setEnabled(false);
+            textValorPedido.setEnabled(false);
+            textCPFCliente.setEnabled(false);
+            textCPFVendedor.setEnabled(false);
+
+            btnConsultarCPFCliente.setEnabled(false);
+            btnConsultarCPFVendedor.setEnabled(false);
+            
+            textDataPedido.setEnabled(true);
+            textValorPedido.setEnabled(true);
+            btnAlterar.setEnabled(true);
+            btnExcluir.setEnabled(true);
         } else
         {
             textDataPedido.setText("");
@@ -277,6 +320,9 @@ public class GuiPedido extends javax.swing.JFrame
             btnIncluir.setEnabled(true);
             btnAlterar.setEnabled(true);
             btnExcluir.setEnabled(true);
+
+            btnConsultarCPFCliente.setEnabled(true);
+            btnConsultarCPFVendedor.setEnabled(true);
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -307,14 +353,66 @@ public class GuiPedido extends javax.swing.JFrame
             pedido.setValor(Double.parseDouble(textValorPedido.getText()));
             pedido.setCliente(new DaoCliente(prepCon.abrirConexao()).consultar(textCPFCliente.getText()));
             pedido.setVendedor(new DaoVendedor(prepCon.abrirConexao()).consultar(textCPFVendedor.getText()));
-        }
-        catch(NumberFormatException e)
+        } catch (NumberFormatException e)
         {
             System.out.println(e);
         }
-        
+
         daoPedido.incluir(pedido);
     }//GEN-LAST:event_btnIncluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
+    {//GEN-HEADEREND:event_btnAlterarActionPerformed
+        try
+        {
+            pedido = daoPedido.consultar(Integer.parseInt(textNumeroPedido.getText()));
+            pedido.setDataEmissao(textDataPedido.getText());
+            pedido.setValor(Double.parseDouble(textValorPedido.getText()));
+            daoPedido.alterar(pedido);
+        } catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnExcluirActionPerformed
+    {//GEN-HEADEREND:event_btnExcluirActionPerformed
+        try
+        {
+            pedido = daoPedido.consultar(Integer.parseInt(textNumeroPedido.getText()));
+            daoPedido.excluir(Integer.parseInt(pedido.getNumero()));
+            System.out.println("Excluido com sucesso!");
+        } catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnConsultarCPFClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConsultarCPFClienteActionPerformed
+    {//GEN-HEADEREND:event_btnConsultarCPFClienteActionPerformed
+        try
+        {
+            Cliente cliente = new DaoCliente(prepCon.abrirConexao()).consultar(textCPFCliente.getText());
+
+            labelValorCPFCliente.setText(cliente.getNome());
+        } catch (Exception e)
+        {
+            labelValorCPFCliente.setText("Não há um cliente com esse CPF!");
+        }
+    }//GEN-LAST:event_btnConsultarCPFClienteActionPerformed
+
+    private void btnConsultarCPFVendedorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConsultarCPFVendedorActionPerformed
+    {//GEN-HEADEREND:event_btnConsultarCPFVendedorActionPerformed
+        try
+        {
+            Vendedor vendedor = new DaoVendedor(prepCon.abrirConexao()).consultar(textCPFVendedor.getText());
+
+            labelValorCPFVendedor.setText(vendedor.getNome());
+        } catch (Exception e)
+        {
+            labelValorCPFVendedor.setText("Não há um vendedor com esse CPF!");
+        }
+    }//GEN-LAST:event_btnConsultarCPFVendedorActionPerformed
 
     /**
      * @param args the command line arguments

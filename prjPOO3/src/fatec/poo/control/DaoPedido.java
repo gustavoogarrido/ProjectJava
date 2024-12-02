@@ -64,7 +64,37 @@ public class DaoPedido
         {
             System.out.println("DEU RUIM!");
         }
-        
+
         return "";
+    }
+
+    public void alterar(Pedido pedido)
+    {
+        PreparedStatement ps;
+        try
+        {
+            ps = conn.prepareStatement("update pooPedido set dataEmissao=?, valor=? where numero=?");
+            ps.setDate(1, Date.valueOf(pedido.getDataEmissao()));
+            ps.setDouble(2, pedido.getValor());
+            ps.setInt(3, Integer.parseInt(pedido.getNumero()));
+            ps.execute();
+        } catch (SQLException ex)
+        {
+            System.out.println("");
+        }
+    }
+
+    public void excluir(int numero)
+    {
+        PreparedStatement ps;
+        try
+        {
+            ps = conn.prepareStatement("delete pooPedido where numero=?");
+            ps.setInt(1, numero);
+            ps.execute();
+        } catch (SQLException ex)
+        {
+            System.out.println("Não existe");
+        }
     }
 }

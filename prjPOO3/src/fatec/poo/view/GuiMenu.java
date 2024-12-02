@@ -97,11 +97,13 @@ public class GuiMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
-        // TODO add your handling code here:
+        GuiCliente cliente = new GuiCliente();
+        cliente.setVisible(true);
     }//GEN-LAST:event_itemClienteActionPerformed
 
     private void itemVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVendedorActionPerformed
-        // TODO add your handling code here:
+        GuiVendedor vendedor = new GuiVendedor();
+        vendedor.setVisible(true);
     }//GEN-LAST:event_itemVendedorActionPerformed
 
     private void itemPedidoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_itemPedidoActionPerformed
