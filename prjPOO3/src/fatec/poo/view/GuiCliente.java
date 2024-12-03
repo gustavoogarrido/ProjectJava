@@ -33,8 +33,7 @@ public class GuiCliente extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         popupExcluir = new javax.swing.JDialog();
         btnPopupConfirmar = new javax.swing.JButton();
@@ -70,19 +69,15 @@ public class GuiCliente extends javax.swing.JFrame
         popupExcluir.setType(java.awt.Window.Type.POPUP);
 
         btnPopupConfirmar.setText("Confirmar");
-        btnPopupConfirmar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPopupConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPopupConfirmarActionPerformed(evt);
             }
         });
 
         btnPopupCancelar.setText("Cancelar");
-        btnPopupCancelar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPopupCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPopupCancelarActionPerformed(evt);
             }
         });
@@ -123,16 +118,12 @@ public class GuiCliente extends javax.swing.JFrame
         setTitle("Cadastro de Cliente");
         setMaximumSize(new java.awt.Dimension(800, 400));
         setMinimumSize(new java.awt.Dimension(800, 400));
-        setPreferredSize(new java.awt.Dimension(800, 400));
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter()
-        {
-            public void windowClosed(java.awt.event.WindowEvent evt)
-            {
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
-            public void windowOpened(java.awt.event.WindowEvent evt)
-            {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
@@ -182,10 +173,8 @@ public class GuiCliente extends javax.swing.JFrame
         btnAlterar.setText("Alterar");
         btnAlterar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAlterar.setEnabled(false);
-        btnAlterar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
@@ -193,10 +182,8 @@ public class GuiCliente extends javax.swing.JFrame
         btnIncluir.setText("Incluir");
         btnIncluir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnIncluir.setEnabled(false);
-        btnIncluir.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIncluirActionPerformed(evt);
             }
         });
@@ -204,30 +191,24 @@ public class GuiCliente extends javax.swing.JFrame
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnExcluir.setEnabled(false);
-        btnExcluir.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
             }
         });
 
         btnSair.setText("Sair");
         btnSair.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSair.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
             }
         });
 
         btnConsultar.setText("Consultar");
         btnConsultar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnConsultar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
             }
         });
@@ -414,7 +395,7 @@ public class GuiCliente extends javax.swing.JFrame
             textCEP.setText(cliente.getCep());
             textLimiteCredito.setText(Double.toString(cliente.getLimiteCredito()));
             labelValorLimiteDisponivel.setText(Double.toString(cliente.getLimiteDisponivel()));
-            textCPF.setEnabled(false);
+            textCPF.setEnabled(true);
             textNome.setEnabled(true);
             textEndereco.setEnabled(true);
             textCidade.setEnabled(true);
@@ -425,7 +406,7 @@ public class GuiCliente extends javax.swing.JFrame
             textLimiteCredito.setEnabled(true);
             btnIncluir.setEnabled(false);
             btnAlterar.setEnabled(true);
-            btnConsultar.setEnabled(false);
+            btnConsultar.setEnabled(true);
             btnExcluir.setEnabled(true);
         } else
         {
@@ -453,9 +434,9 @@ public class GuiCliente extends javax.swing.JFrame
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        prepCon = new PreparaConexao("kevindb", "kevindb");
+        prepCon = new PreparaConexao("system", "senhabd123");
         prepCon.setDriver("oracle.jdbc.driver.OracleDriver");
-        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521/XEPDB1");
+        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521:xe");
         daoCliente = new DaoCliente(prepCon.abrirConexao());
         lblCPF.setText("");
     }//GEN-LAST:event_formWindowOpened
@@ -560,47 +541,6 @@ public class GuiCliente extends javax.swing.JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex)
-        {
-            java.util.logging.Logger.getLogger(GuiCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
-            java.util.logging.Logger.getLogger(GuiCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
-            java.util.logging.Logger.getLogger(GuiCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(GuiCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new GuiCliente().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

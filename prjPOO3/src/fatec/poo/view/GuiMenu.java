@@ -27,8 +27,7 @@ public class GuiMenu extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros = new javax.swing.JMenu();
@@ -47,30 +46,24 @@ public class GuiMenu extends javax.swing.JFrame
         menuCadastros.setText("Cadastros");
 
         itemCliente.setText("Cliente");
-        itemCliente.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        itemCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemClienteActionPerformed(evt);
             }
         });
         menuCadastros.add(itemCliente);
 
         itemVendedor.setText("Vendedor");
-        itemVendedor.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        itemVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemVendedorActionPerformed(evt);
             }
         });
         menuCadastros.add(itemVendedor);
 
         itemPedido.setText("Pedido");
-        itemPedido.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        itemPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemPedidoActionPerformed(evt);
             }
         });
@@ -78,10 +71,8 @@ public class GuiMenu extends javax.swing.JFrame
         menuCadastros.add(jSeparator1);
 
         itemSair.setText("Sair");
-        itemSair.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        itemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemSairActionPerformed(evt);
             }
         });

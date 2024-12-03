@@ -39,8 +39,7 @@ public class GuiPedido extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         popupExcluir = new javax.swing.JDialog();
         btnPopupConfirmar = new javax.swing.JButton();
@@ -66,24 +65,21 @@ public class GuiPedido extends javax.swing.JFrame
         labelValorCPFCliente = new javax.swing.JLabel();
         labelValorCPFVendedor = new javax.swing.JLabel();
         labelException = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         popupExcluir.setSize(new java.awt.Dimension(400, 240));
         popupExcluir.setType(java.awt.Window.Type.POPUP);
 
         btnPopupConfirmar.setText("Confirmar");
-        btnPopupConfirmar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPopupConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPopupConfirmarActionPerformed(evt);
             }
         });
 
         btnPopupCancelar.setText("Cancelar");
-        btnPopupCancelar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPopupCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPopupCancelarActionPerformed(evt);
             }
         });
@@ -124,20 +120,25 @@ public class GuiPedido extends javax.swing.JFrame
         setTitle("Emitir Pedido");
         setMaximumSize(new java.awt.Dimension(800, 400));
         setMinimumSize(new java.awt.Dimension(800, 400));
-        setPreferredSize(new java.awt.Dimension(800, 400));
-        addWindowListener(new java.awt.event.WindowAdapter()
-        {
-            public void windowClosed(java.awt.event.WindowEvent evt)
-            {
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
-            public void windowOpened(java.awt.event.WindowEvent evt)
-            {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
         labelNumeroPedido.setText("Número do Pedido:");
+
+        textNumeroPedido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textNumeroPedidoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textNumeroPedidoFocusLost(evt);
+            }
+        });
 
         labelDataPedido.setText("Data do Pedido:");
 
@@ -151,10 +152,8 @@ public class GuiPedido extends javax.swing.JFrame
 
         btnConsultarCPFCliente.setText("Consultar");
         btnConsultarCPFCliente.setEnabled(false);
-        btnConsultarCPFCliente.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnConsultarCPFCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarCPFClienteActionPerformed(evt);
             }
         });
@@ -165,10 +164,8 @@ public class GuiPedido extends javax.swing.JFrame
 
         btnConsultarCPFVendedor.setText("Consultar");
         btnConsultarCPFVendedor.setEnabled(false);
-        btnConsultarCPFVendedor.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnConsultarCPFVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarCPFVendedorActionPerformed(evt);
             }
         });
@@ -176,49 +173,39 @@ public class GuiPedido extends javax.swing.JFrame
         textCPFVendedor.setEnabled(false);
 
         btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
             }
         });
 
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
-        btnExcluir.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
             }
         });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
-        btnAlterar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
 
         btnIncluir.setText("Incluir");
         btnIncluir.setEnabled(false);
-        btnIncluir.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIncluirActionPerformed(evt);
             }
         });
 
         btnConsultar.setText("Consultar");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
             }
         });
@@ -229,6 +216,9 @@ public class GuiPedido extends javax.swing.JFrame
         labelValorCPFVendedor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labelValorCPFVendedor.setEnabled(false);
 
+        jLabel2.setText("YYYYY-MM-DD");
+        jLabel2.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -236,6 +226,26 @@ public class GuiPedido extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCPFCliente)
+                            .addComponent(labelCPFVendedor))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textCPFVendedor)
+                            .addComponent(textCPFCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelException, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(btnConsultarCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelValorCPFVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnConsultarCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelValorCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -253,27 +263,9 @@ public class GuiPedido extends javax.swing.JFrame
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(textNumeroPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                                     .addComponent(textDataPedido))))
-                        .addGap(59, 59, 59))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelCPFCliente)
-                            .addComponent(labelCPFVendedor))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textCPFVendedor)
-                            .addComponent(textCPFCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(labelException, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(btnConsultarCPFVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelValorCPFVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnConsultarCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelValorCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 60, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel2)
+                        .addGap(436, 436, 436))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,7 +290,8 @@ public class GuiPedido extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDataPedido)
-                    .addComponent(textDataPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textDataPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelValorPedido)
@@ -357,7 +350,7 @@ public class GuiPedido extends javax.swing.JFrame
                 btnConsultarCPFCliente.setEnabled(false);
                 btnConsultarCPFVendedor.setEnabled(false);
 
-                textNumeroPedido.setEnabled(false);
+                textNumeroPedido.setEnabled(true);
                 textCPFCliente.setEnabled(false);
                 textCPFVendedor.setEnabled(false);
                 textDataPedido.setEnabled(true);
@@ -369,18 +362,19 @@ public class GuiPedido extends javax.swing.JFrame
             } else
             {
                 textNumeroPedido.setEnabled(true);
-                textDataPedido.setEnabled(false);
-                textValorPedido.setEnabled(false);
-                textCPFCliente.setEnabled(false);
-                textCPFVendedor.setEnabled(false);
+                textDataPedido.setEnabled(true);
+                textValorPedido.setEnabled(true);
+                textCPFCliente.setEnabled(true);
+                textCPFVendedor.setEnabled(true);
 
-                btnIncluir.setEnabled(false);
+                btnIncluir.setEnabled(true);
                 btnAlterar.setEnabled(false);
                 btnExcluir.setEnabled(false);
 
-                btnConsultarCPFCliente.setEnabled(false);
-                btnConsultarCPFVendedor.setEnabled(false);
-                labelException.setText("");
+                btnConsultarCPFCliente.setEnabled(true);
+                btnConsultarCPFVendedor.setEnabled(true);
+                labelException.setForeground(Color.red);
+                labelException.setText("CPF Inexistente, tente outro ou incluá-lo");
             }
         } catch (Exception e)
         {
@@ -391,9 +385,9 @@ public class GuiPedido extends javax.swing.JFrame
 
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
     {//GEN-HEADEREND:event_formWindowOpened
-        prepCon = new PreparaConexao("kevindb", "kevindb");
+        prepCon = new PreparaConexao("system", "senhabd123");
         prepCon.setDriver("oracle.jdbc.driver.OracleDriver");
-        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521/XEPDB1");
+        prepCon.setConnectionString("jdbc:oracle:thin:@127.0.0.1:1521:xe");
         daoPedido = new DaoPedido(prepCon.abrirConexao());
         daoCliente = new DaoCliente(prepCon.abrirConexao());
         daoVendedor = new DaoVendedor(prepCon.abrirConexao());
@@ -434,6 +428,22 @@ public class GuiPedido extends javax.swing.JFrame
             labelException.setForeground(Color.green);
             daoPedido.incluir(pedido);
             daoCliente.alterar(cliente);
+            
+            textNumeroPedido.setText(null);
+            textDataPedido.setText(null);
+            textValorPedido.setText(null);
+            textCPFCliente.setText(null);
+            textCPFVendedor.setText(null);
+            labelValorCPFCliente.setText(null);
+            labelValorCPFVendedor.setText(null);
+            
+            textNumeroPedido.setEnabled(true);
+            textDataPedido.setEnabled(false);
+            textValorPedido.setEnabled(false);
+            textCPFCliente.setEnabled(false);
+            textCPFVendedor.setEnabled(false);
+            btnConsultarCPFCliente.setEnabled(false);
+            btnConsultarCPFVendedor.setEnabled(false);
 
         } catch (Exception e)
         {
@@ -521,13 +531,13 @@ public class GuiPedido extends javax.swing.JFrame
             labelException.setText("Pedido excluido com sucesso!");
             labelException.setForeground(Color.green);
             
-            textNumeroPedido.setText("");
-            textDataPedido.setText("");
-            textValorPedido.setText("");
-            textCPFCliente.setText("");
-            textCPFVendedor.setText("");
-            labelValorCPFCliente.setText("");
-            labelValorCPFVendedor.setText("");
+            textNumeroPedido.setText(null);
+            textDataPedido.setText(null);
+            textValorPedido.setText(null);
+            textCPFCliente.setText(null);
+            textCPFVendedor.setText(null);
+            labelValorCPFCliente.setText(null);
+            labelValorCPFVendedor.setText(null);
 
             textNumeroPedido.setEnabled(true);
             textDataPedido.setEnabled(false);
@@ -556,50 +566,17 @@ public class GuiPedido extends javax.swing.JFrame
         popupExcluir.setVisible(false);
     }//GEN-LAST:event_btnPopupCancelarActionPerformed
 
+    private void textNumeroPedidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textNumeroPedidoFocusGained
+        
+    }//GEN-LAST:event_textNumeroPedidoFocusGained
+
+    private void textNumeroPedidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textNumeroPedidoFocusLost
+        
+    }//GEN-LAST:event_textNumeroPedidoFocusLost
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex)
-        {
-            java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
-            java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
-            java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new GuiPedido().setVisible(true);
-            }
-        });
-    }
 
     private Pedido pedido;
     private PreparaConexao prepCon;
@@ -618,6 +595,7 @@ public class GuiPedido extends javax.swing.JFrame
     private javax.swing.JButton btnPopupConfirmar;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelCPFCliente;
     private javax.swing.JLabel labelCPFVendedor;
     private javax.swing.JLabel labelDataPedido;
